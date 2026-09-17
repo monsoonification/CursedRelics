@@ -5,18 +5,22 @@ using CursedRelics.CursedRelicsCode.Extensions;
 namespace CursedRelics.CursedRelicsCode.Relics;
 
 /// <summary>
-/// This is the base class for your mod's relics, which is set up to load the relic's images from your mod's resources.
-/// When creating a relic, right click the Relics folder and create a new file with the Custom Relic template.
-/// This will generate a class that extends this one.
-/// You can also just create the class manually; just make sure to inherit from this class.
+/// Base class for every relic in this mod. Extends BaseLib's <see cref="CustomRelicModel"/>,
+/// which handles ID registration, save/load, and patch integration automatically.
 /// </summary>
 public abstract class CursedRelicsRelic : CustomRelicModel
 {
-    //CursedRelics/images/relics
-    public override string PackedIconPath => $"{Id.Entry.RemovePrefix().ToLowerInvariant()}.png".RelicImagePath();
+    // Small icon — res://CursedRelics/images/relics/{id}.png
+    public override string PackedIconPath =>
+        $"{Id.Entry.RemovePrefix().ToLowerInvariant()}.png".RelicImagePath();
 
+    // Outline — res://CursedRelics/images/relics/{id}_outline.png
+    // Same helper as the regular icon; the "_outline" suffix in the filename
+    // tells BaseLib's resource loader to look for the outline variant.
     protected override string PackedIconOutlinePath =>
         $"{Id.Entry.RemovePrefix().ToLowerInvariant()}_outline.png".RelicImagePath();
 
-    protected override string BigIconPath => $"{Id.Entry.RemovePrefix().ToLowerInvariant()}.png".BigRelicImagePath();
+    // Large icon — res://CursedRelics/images/relics/{id}.png
+    protected override string BigIconPath =>
+        $"{Id.Entry.RemovePrefix().ToLowerInvariant()}.png".BigRelicImagePath();
 }
