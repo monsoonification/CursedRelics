@@ -62,8 +62,6 @@
     </ItemGroup>
 
     <ItemGroup>
-        <Folder Include="CursedRelics\images\card_portraits\big\"/>
-        <Folder Include="CursedRelics\images\powers\big\"/>
         <Folder Include="CursedRelics\images\relics\big\"/>
     </ItemGroup>
 
